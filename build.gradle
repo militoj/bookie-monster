@@ -26,5 +26,6 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	runtime('org.springframework.boot:spring-boot-devtools')
+	compile('org.apache.commons:commons-csv:1.4')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
