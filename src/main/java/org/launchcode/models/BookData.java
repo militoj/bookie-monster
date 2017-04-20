@@ -27,7 +27,7 @@ public class BookData {
     private static final String DATA_FILE = "book_data.csv";
     private static boolean isDataLoaded = false;
 
-    private static ArrayList<HashMap<String, String>> allBooks;
+    private static ArrayList<HashMap<String, Float>> allBooks;
 
     /**
      * Fetch list of all values from loaded data,
@@ -36,15 +36,15 @@ public class BookData {
      * @param field The column to retrieve values from
      * @return List of all of the values of the given field
      */
-    public static ArrayList<String> findAll(String field) {
+    public static ArrayList<Float> findAll(String field) {
 
         // load data, if not already loaded
         loadData();
 
-        ArrayList<String> values = new ArrayList<>();
+        ArrayList<Float> values = new ArrayList<>();
 
-        for (HashMap<String, String> row : allBooks) {
-            String aValue = row.get(field);
+        for (HashMap<String, Float> row : allBooks) {
+            Float aValue = row.get(field);
 
             if (!values.contains(aValue)) {
                 values.add(aValue);
@@ -57,7 +57,7 @@ public class BookData {
         return values;
     }
 
-    public static ArrayList<HashMap<String, String>> findAll() {
+    public static ArrayList<HashMap<String, Float>> findAll() {
 
         // load data, if not already loaded
         loadData();
