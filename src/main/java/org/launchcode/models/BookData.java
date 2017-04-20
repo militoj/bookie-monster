@@ -9,13 +9,13 @@ import java.util.HashMap;
 public class BookData {
 
     /**
-     * Borrowed some of this from LaunchCode's techjobs-mvc and adapted it for this purpose.
+     * Borrowed some of this from LaunchCode's techjobs-mvc and adapted it for this project.
      */
 
     private static final String DATA_FILE = "book_data.csv";
     private static boolean isDataLoaded = false;
 
-    private static ArrayList<HashMap<String, String>> allJobs;
+    private static ArrayList<HashMap<String, String>> allBooks;
 
     /**
      * Fetch list of all values from loaded data,
@@ -31,7 +31,7 @@ public class BookData {
 
         ArrayList<String> values = new ArrayList<>();
 
-        for (HashMap<String, String> row : allJobs) {
+        for (HashMap<String, String> row : allBooks) {
             String aValue = row.get(field);
 
             if (!values.contains(aValue)) {
@@ -50,8 +50,8 @@ public class BookData {
         // load data, if not already loaded
         loadData();
 
-        // Bonus mission; normal version returns allJobs
-        return new ArrayList<>(allJobs);
+        // Bonus mission; normal version returns allBooks
+        return new ArrayList<>(allBooks);
     }
 
     /**
@@ -72,7 +72,7 @@ public class BookData {
 
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
 
-        for (HashMap<String, String> row : allJobs) {
+        for (HashMap<String, String> row : allBooks) {
 
             String aValue = row.get(column);
 
@@ -97,7 +97,7 @@ public class BookData {
 
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
 
-        for (HashMap<String, String> row : allJobs) {
+        for (HashMap<String, String> row : allBooks) {
 
             for (String key : row.keySet()) {
                 String aValue = row.get(key);
@@ -135,7 +135,7 @@ public class BookData {
             Integer numberOfColumns = records.get(0).size();
             String[] headers = parser.getHeaderMap().keySet().toArray(new String[numberOfColumns]);
 
-            allJobs = new ArrayList<>();
+            allBooks = new ArrayList<>();
 
             // Put the records into a more friendly format
             for (CSVRecord record : records) {
@@ -145,7 +145,7 @@ public class BookData {
                     newJob.put(headerLabel, record.get(headerLabel));
                 }
 
-                allJobs.add(newJob);
+                allBooks.add(newJob);
             }
 
             // flag the data as loaded, so we don't do it twice
