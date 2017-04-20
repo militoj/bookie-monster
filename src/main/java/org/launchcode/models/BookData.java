@@ -77,18 +77,20 @@ public class BookData {
      * @param value Value of teh field to search for
      * @return List of all jobs matching the criteria
      */
-    public static ArrayList<HashMap<String, String>> findByColumnAndValue(String column, String value) {
+    public static ArrayList<HashMap<String, Float>> findByColumnAndValue(String column, Float value) {
 
         // load data, if not already loaded
         loadData();
 
-        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+        ArrayList<HashMap<String, Float>> jobs = new ArrayList<>();
 
-        for (HashMap<String, String> row : allBooks) {
+        for (HashMap<String, Float> row : allBooks) {
 
-            String aValue = row.get(column);
+            Float aValue = row.get(column);
 
-            if (aValue != null && aValue.toLowerCase().contains(value.toLowerCase())) {
+
+            //not a hundred percent sure that this will work correctly because floating points are not exact
+            if (aValue != null && aValue.equals(value)) {
                 jobs.add(row);
             }
         }
