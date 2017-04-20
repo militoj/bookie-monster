@@ -12,7 +12,7 @@ public class BookData {
      * Borrowed some of this from LaunchCode's techjobs-mvc and adapted it for this purpose.
      */
 
-    private static final String DATA_FILE = "job_data.csv";
+    private static final String DATA_FILE = "book_data.csv";
     private static boolean isDataLoaded = false;
 
     private static ArrayList<HashMap<String, String>> allJobs;
@@ -39,7 +39,7 @@ public class BookData {
             }
         }
 
-        // Bonus mission: sort the results
+        // TODO: here maybe sort by book price highest to lowest
         Collections.sort(values);
 
         return values;
