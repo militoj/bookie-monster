@@ -1,8 +1,7 @@
 package org.launchcode.controllers;
 
-import org.launchcode.models.Job;
-import org.launchcode.models.JobFieldType;
-import org.launchcode.models.forms.SearchForm;
+import org.launchcode.models.Book;
+import org.launchcode.models.BookFieldType;
 import org.launchcode.models.data.JobData;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,15 +29,15 @@ public class SearchController {
     public String search(Model model,
                          @ModelAttribute SearchForm searchForm) {
 
-        ArrayList<Job> jobs;
+        ArrayList<Book> books;
 
-        if (searchForm.getSearchField().equals(JobFieldType.ALL)) {
-            jobs = jobData.findByValue(searchForm.getKeyword());
+        if (searchForm.getSearchField().equals(BookFieldType.ALL)) {
+            books = jobData.findByValue(searchForm.getKeyword());
         } else {
-            jobs = jobData.findByColumnAndValue(searchForm.getSearchField(), searchForm.getKeyword());
+            books = jobData.findByColumnAndValue(searchForm.getSearchField(), searchForm.getKeyword());
         }
 
-        model.addAttribute("jobs", jobs);
+        model.addAttribute("books", books);
 
         return "search";
     }

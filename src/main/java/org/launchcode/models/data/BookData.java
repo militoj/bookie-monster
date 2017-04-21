@@ -1,93 +1,119 @@
 package org.launchcode.models.data;
 
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVRecord;
 import org.launchcode.models.*;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 /**
  * Created by LaunchCode
  */
-public class JobDataImporter {
+public class BookData {
 
-    private static final String DATA_FILE = "job_data.csv";
-    private static boolean isDataLoaded = false;
+    private ArrayList<Book> books = new ArrayList<>();
+    private static BookData instance;
 
-    /**
-     * Read in data from a CSV file and store it in a list
-     */
-    static void loadData(JobData jobData) {
+    private BookFieldData<ISBN> employers = new BookFieldData<>();
+    private BookFieldData<Quantity> locations = new BookFieldData<>();
+    private BookFieldData<DateCreated> coreCompetencies = new BookFieldData<>();
+    private BookFieldData<Price> positionTypes = new BookFieldData<>();
 
-        // Only load data once
-        if (isDataLoaded) {
-            return;
-        }
 
-        try {
-
-            // Open the CSV file and set up pull out column header info and records
-            Resource resource = new ClassPathResource(DATA_FILE);
-            InputStream is = resource.getInputStream();
-            Reader reader = new InputStreamReader(is);
-            CSVParser parser = CSVFormat.RFC4180.withFirstRecordAsHeader().parse(reader);
-            List<CSVRecord> records = parser.getRecords();
-            Integer numberOfColumns = records.get(0).size();
-            String[] headers = parser.getHeaderMap().keySet().toArray(new String[numberOfColumns]);
-
-            // Put the records into a more friendly format
-            for (CSVRecord record : records) {
-
-                String empStr = record.get("employer");
-                String locStr = record.get("location");
-                String coreCompStr = record.get("core competency");
-                String posTypeStr = record.get("position type");
-
-                Employer emp = jobData.getEmployers().findByValue(empStr);
-                if (emp == null) {
-                    emp = new Employer(empStr);
-                    jobData.getEmployers().add(emp);
-                }
-
-                Location loc = jobData.getLocations().findByValue(locStr);
-                if (loc == null) {
-                    loc = new Location(locStr);
-                    jobData.getLocations().add(loc);
-                }
-
-                PositionType posType = jobData.getPositionTypes().findByValue(posTypeStr);
-                if (posType == null) {
-                    posType = new PositionType(posTypeStr);
-                    jobData.getPositionTypes().add(posType);
-                }
-
-                CoreCompetency coreComp = jobData.getCoreCompetencies().findByValue(coreCompStr);
-                if (coreComp == null) {
-                    coreComp = new CoreCompetency(coreCompStr);
-                    jobData.getCoreCompetencies().add(coreComp);
-                }
-
-                Job newJob = new Job(record.get("name"), emp, loc, posType, coreComp);
-
-                jobData.add(newJob);
-            }
-
-            // flag the data as loaded, so we don't do it twice
-            isDataLoaded = true;
-
-        } catch (IOException e) {
-            System.out.println("Failed to load job data");
-            e.printStackTrace();
-        }
+    private BookData() {
+        BookDataImporter.loadData(this);
     }
 
+
+    public static BookData getInstance() {
+        if (instance == null) {
+            instance = new BookData();
+        }
+        return instance;
+    }
+
+    public Book findById(int id) {
+        for (Book book : books) {
+            if (book.getId() == id)
+                return book;
+        }
+
+        return null;
+    }
+
+    public ArrayList<Book> findAll() {
+        return books;
+    }
+
+
+    public ArrayList<Book> findByColumnAndValue(BookFieldType column, String value) {
+
+        ArrayList<Book> matchingBooks = new ArrayList<>();
+
+        for (Book book : books) {
+            if (getFieldByType(book, column).contains(value))
+                matchingBooks.add(book);
+        }
+
+        return matchingBooks;
+    }
+
+
+    public ArrayList<Book> findByValue(Float value) {
+
+        ArrayList<Book> matchingBooks = new ArrayList<>();
+
+        for (Book book : books) {
+
+            // TODO Figure out what this does where and fix it. why is name important?
+            if (book.getName().toLowerCase().contains(value)) {
+                matchingBooks.add(book);
+                continue;
+            }
+
+            for (BookFieldType column : BookFieldType.values()) {
+                if (column != BookFieldType.ALL && getFieldByType(book, column).contains(value)) {
+                    matchingBooks.add(book);
+                    break;
+                }
+            }
+        }
+
+        return matchingBooks;
+    }
+
+
+    public void add(Book book) {
+        books.add(book);
+    }
+
+
+    private static BookField getFieldByType(Book book, BookFieldType type) {
+        switch(type) {
+            case ISBN:
+                return book.getEmployer();
+            case QUANTITY:
+                return book.getQuantity();
+            case PRICE:
+                return book.getDateCreated();
+            case DATE_CREATED:
+                return book.getPrice();
+        }
+
+        throw new IllegalArgumentException("Cannot get field of type " + type);
+    }
+
+    public BookFieldData<ISBN> getISBNs() {
+        return isbns;
+    }
+
+    public BookFieldData<Quantity> getLocations() {
+        return locations;
+    }
+
+    public BookFieldData<DateCreated> getCoreCompetencies() {
+        return coreCompetencies;
+    }
+
+    public BookFieldData<Price> getPositionTypes() {
+        return positionTypes;
+    }
 }

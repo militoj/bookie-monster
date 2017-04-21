@@ -3,17 +3,17 @@ package org.launchcode.models;
 /**
  * Created by LaunchCode
  */
-public enum JobFieldType {
+public enum BookFieldType {
 
-    EMPLOYER ("Employer"),
-    LOCATION ("Location"),
+    ISBN("Employer"),
+    LOCATION ("Quantity"),
     CORE_COMPETENCY ("Skill"),
     POSITION_TYPE ("Position Type"),
     ALL ("All");
 
     private final String name;
 
-    JobFieldType(String name) {
+    BookFieldType(String name) {
         this.name = name;
     }
 

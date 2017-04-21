@@ -3,9 +3,9 @@ package org.launchcode.models;
 /**
  * Created by LaunchCode
  */
-public class Location extends JobField {
+public class Price extends BookField {
 
-    public Location(String value) {
+    public Price(Float value) {
         super(value);
     }
 

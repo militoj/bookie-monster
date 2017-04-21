@@ -1,8 +1,7 @@
 package org.launchcode.controllers;
 
 import org.launchcode.models.*;
-import org.launchcode.models.data.JobFieldData;
-import org.launchcode.models.forms.JobForm;
+import org.launchcode.models.data.BookFieldData;
 import org.launchcode.models.data.JobData;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,11 +20,11 @@ public class JobController {
 
     private JobData jobData = JobData.getInstance();
 
-    // The detail display for a given Job at URLs like /job?id=17
+    // The detail display for a given Book at URLs like /job?id=17
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String index(Model model, int id) {
 
-        // TODO #1 - get the Job with the given ID and pass it into the view
+        // TODO #1 - get the Book with the given ID and pass it into the view
         model.addAttribute("job", jobData.findById(id));
         return "job-detail";
     }
@@ -40,29 +39,29 @@ public class JobController {
     public String add(Model model, @Valid JobForm jobForm, Errors errors) {
 
         // TODO #6 - Validate the JobForm model, and if valid, create a
-        // new Job and add it to the jobData data store. Then
-        // redirect to the job detail view for the new Job.
+        // new Book and add it to the jobData data store. Then
+        // redirect to the book detail view for the new Book.
 
         if (errors.hasErrors()) {
             //model.addAttribute(new JobForm());
-            return "new-job";
+            return "new-book";
         }
 
-        JobFieldData<Employer> newEmployer = jobData.getEmployers();
+        BookFieldData<Employer> newEmployer = jobData.getEmployers();
         Employer foundEmployer = newEmployer.findById(jobForm.getEmployerId());
 
-        Location foundLocation = jobData.getLocations().findById(jobForm.getLocationId());
+        Quantity foundQuantity = jobData.getLocations().findById(jobForm.getLocationId());
 
-        PositionType foundPositionType = jobData.getPositionTypes().findById(jobForm.getPositionTypeId());
+        Price foundPrice = jobData.getPositionTypes().findById(jobForm.getPositionTypeId());
 
-        CoreCompetency foundCoreCompetency = jobData.getCoreCompetencies().findById(jobForm.getCoreCompetencyId());
+        DateCreated foundDateCreated = jobData.getCoreCompetencies().findById(jobForm.getCoreCompetencyId());
 
 
-        Job job = new Job( jobForm.getName(), foundEmployer, foundLocation,
-                foundPositionType, foundCoreCompetency);
+        Book book = new Book( jobForm.getName(), foundEmployer, foundQuantity,
+                foundPrice, foundDateCreated);
 
-        jobData.add(job);
-        return "redirect:/job?id="+job.getId();
+        jobData.add(book);
+        return "redirect:/book?id="+ book.getId();
 
 
 

@@ -1,39 +1,42 @@
 package org.launchcode.models;
 
+import com.sun.xml.internal.bind.v2.TODO;
+
 /**
  * Created by LaunchCode
  */
-public class JobField {
+public class BookField {
 
-    private String value;
+    private Float value;
     private int id;
     private static int nextId = 1;
 
-    public JobField() {
+    public BookField() {
         id = nextId;
         nextId++;
     }
 
-    public JobField(String aValue) {
+    public BookField(Float aValue) {
         this();
         value = aValue;
     }
 
     public boolean contains(String value) {
-        return this.value.toLowerCase().contains(value.toLowerCase());
+        return this.value.equals(value);
     }
 
-    public String getValue() {
+    public Float getValue() {
         return value;
     }
 
-    public void setValue(String aValue) {
+    public void setValue(Float aValue) {
         value = aValue;
     }
 
-    public String toString() {
-        return value;
-    }
+//    TODO figure out where this is used and what to do about it
+//    public String toString() {
+//        return value;
+//    }
 
     public int getId() {
         return id;
@@ -48,9 +51,9 @@ public class JobField {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        JobField jobField = (JobField) o;
+        BookField bookField = (BookField) o;
 
-        return id == jobField.getId();
+        return id == bookField.getId();
     }
 
     @Override

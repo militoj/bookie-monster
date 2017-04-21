@@ -3,9 +3,9 @@ package org.launchcode.models;
 /**
  * Created by LaunchCode
  */
-public class CoreCompetency extends JobField {
+public class DateCreated extends BookField {
 
-    public CoreCompetency(String value) {
+    public DateCreated(Float value) {
         super(value);
     }
 }

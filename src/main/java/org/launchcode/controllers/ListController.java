@@ -1,8 +1,8 @@
 package org.launchcode.controllers;
 
-import org.launchcode.models.Job;
-import org.launchcode.models.JobField;
-import org.launchcode.models.JobFieldType;
+import org.launchcode.models.Book;
+import org.launchcode.models.BookField;
+import org.launchcode.models.BookFieldType;
 import org.launchcode.models.data.JobData;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by LaunchCode
@@ -23,23 +22,23 @@ public class ListController {
 
     @RequestMapping(value = "")
     public String list(Model model) {
-        JobFieldType[] fields = JobFieldType.values();
+        BookFieldType[] fields = BookFieldType.values();
         model.addAttribute("fields", fields);
         return "list";
     }
 
     @RequestMapping(value = "values")
-    public String listColumnValues(Model model, @RequestParam JobFieldType column) {
+    public String listColumnValues(Model model, @RequestParam BookFieldType column) {
 
-        if (column.equals(JobFieldType.ALL)) {
+        if (column.equals(BookFieldType.ALL)) {
             return "redirect:/list/all";
         }
 
 
-        ArrayList<? extends JobField> items;
+        ArrayList<? extends BookField> items;
 
         switch(column) {
-            case EMPLOYER:
+            case ISBN:
                 items = jobData.getEmployers().findAll();
                 break;
             case LOCATION:
@@ -62,24 +61,24 @@ public class ListController {
 
     @RequestMapping(value = "jobs")
     public String listJobsByColumnAndValue(Model model,
-            @RequestParam JobFieldType column, @RequestParam String name) {
+                                           @RequestParam BookFieldType column, @RequestParam String name) {
 
-        ArrayList<Job> jobs = jobData.findByColumnAndValue(column, name);
+        ArrayList<Book> books = jobData.findByColumnAndValue(column, name);
 
         model.addAttribute("title", "Jobs with " + column.getName() + ": " + name);
-        model.addAttribute("jobs", jobs);
+        model.addAttribute("books", books);
 
-        return "list-jobs";
+        return "list-books";
     }
 
     @RequestMapping(value = "all")
     public String listAllJobs(Model model) {
 
-        ArrayList<Job> jobs = jobData.findAll();
+        ArrayList<Book> books = jobData.findAll();
 
         model.addAttribute("title", "All Jobs");
-        model.addAttribute("jobs", jobs);
+        model.addAttribute("books", books);
 
-        return "list-jobs";
+        return "list-books";
     }
 }

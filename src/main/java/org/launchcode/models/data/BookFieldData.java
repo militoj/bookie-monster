@@ -1,14 +1,13 @@
 package org.launchcode.models.data;
 
-import org.launchcode.models.Job;
-import org.launchcode.models.JobField;
+import org.launchcode.models.BookField;
 
 import java.util.ArrayList;
 
 /**
  * Created by LaunchCode
  */
-public class JobFieldData<T extends JobField> {
+public class BookFieldData<T extends BookField> {
 
     private ArrayList<T> allFields = new ArrayList<>();
 

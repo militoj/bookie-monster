@@ -11,14 +11,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
  * Created by LaunchCode
  */
-public class JobDataImporter {
+public class BookDataImporter {
 
     private static final String DATA_FILE = "job_data.csv";
     private static boolean isDataLoaded = false;
@@ -26,7 +24,7 @@ public class JobDataImporter {
     /**
      * Read in data from a CSV file and store it in a list
      */
-    static void loadData(JobData jobData) {
+    static void loadData(BookData bookData) {
 
         // Only load data once
         if (isDataLoaded) {
@@ -52,33 +50,33 @@ public class JobDataImporter {
                 String coreCompStr = record.get("core competency");
                 String posTypeStr = record.get("position type");
 
-                Employer emp = jobData.getEmployers().findByValue(empStr);
+                ISBN emp = bookData.getISBNs().findByValue(empStr);
                 if (emp == null) {
-                    emp = new Employer(empStr);
-                    jobData.getEmployers().add(emp);
+                    emp = new ISBN(empStr);
+                    bookData.getISBNs().add(emp);
                 }
 
-                Location loc = jobData.getLocations().findByValue(locStr);
+                Quantity loc = bookData.getLocations().findByValue(locStr);
                 if (loc == null) {
-                    loc = new Location(locStr);
-                    jobData.getLocations().add(loc);
+                    loc = new Quantity(locStr);
+                    bookData.getLocations().add(loc);
                 }
 
-                PositionType posType = jobData.getPositionTypes().findByValue(posTypeStr);
+                Price posType = bookData.getPositionTypes().findByValue(posTypeStr);
                 if (posType == null) {
-                    posType = new PositionType(posTypeStr);
-                    jobData.getPositionTypes().add(posType);
+                    posType = new Price(posTypeStr);
+                    bookData.getPositionTypes().add(posType);
                 }
 
-                CoreCompetency coreComp = jobData.getCoreCompetencies().findByValue(coreCompStr);
+                DateCreated coreComp = bookData.getCoreCompetencies().findByValue(coreCompStr);
                 if (coreComp == null) {
-                    coreComp = new CoreCompetency(coreCompStr);
-                    jobData.getCoreCompetencies().add(coreComp);
+                    coreComp = new DateCreated(coreCompStr);
+                    bookData.getCoreCompetencies().add(coreComp);
                 }
 
-                Job newJob = new Job(record.get("name"), emp, loc, posType, coreComp);
+                Book newBook = new Book(record.get("name"), emp, loc, posType, coreComp);
 
-                jobData.add(newJob);
+                bookData.add(newBook);
             }
 
             // flag the data as loaded, so we don't do it twice

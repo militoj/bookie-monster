@@ -3,9 +3,9 @@ package org.launchcode.models;
 /**
  * Created by LaunchCode
  */
-public class Employer extends JobField {
+public class ISBN extends BookField {
 
-    public Employer(String value) {
+    public ISBN(Float value) {
         super(value);
     }
 }
