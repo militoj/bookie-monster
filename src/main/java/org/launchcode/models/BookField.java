@@ -21,7 +21,7 @@ public class BookField {
         value = aValue;
     }
 
-    public boolean contains(String value) {
+    public boolean contains(Float value) {
         return this.value.equals(value);
     }
 

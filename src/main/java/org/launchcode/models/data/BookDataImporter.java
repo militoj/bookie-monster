@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class BookDataImporter {
 
-    private static final String DATA_FILE = "job_data.csv";
+    private static final String DATA_FILE = "book_data.csv";
     private static boolean isDataLoaded = false;
 
     /**
@@ -45,10 +45,10 @@ public class BookDataImporter {
             // Put the records into a more friendly format
             for (CSVRecord record : records) {
 
-                String empStr = record.get("employer");
-                String locStr = record.get("location");
-                String coreCompStr = record.get("core competency");
-                String posTypeStr = record.get("position type");
+                String empStr = record.get("isbn");
+                String locStr = record.get("quantity");
+                String coreCompStr = record.get("price");
+                String posTypeStr = record.get("date-created");
 
                 ISBN emp = bookData.getISBNs().findByValue(empStr);
                 if (emp == null) {
@@ -83,7 +83,7 @@ public class BookDataImporter {
             isDataLoaded = true;
 
         } catch (IOException e) {
-            System.out.println("Failed to load job data");
+            System.out.println("Failed to load book data");
             e.printStackTrace();
         }
     }
