@@ -7,7 +7,7 @@ import com.sun.xml.internal.bind.v2.TODO;
  */
 public class BookField {
 
-    private Float value;
+    private int value;
     private int id;
     private static int nextId = 1;
 
@@ -16,27 +16,26 @@ public class BookField {
         nextId++;
     }
 
-    public BookField(Float aValue) {
+    public BookField(int aValue) {
         this();
         value = aValue;
     }
 
-    public boolean contains(Float value) {
-        return this.value.equals(value);
+    public boolean contains(int value) {
+        return this.value == value;
     }
 
-    public Float getValue() {
+    public int getValue() {
         return value;
     }
 
-    public void setValue(Float aValue) {
+    public void setValue(int aValue) {
         value = aValue;
     }
 
-//    TODO figure out where this is used and what to do about it
-//    public String toString() {
-//        return value;
-//    }
+    public String toString() {
+        return Integer.toString(value);
+    }
 
     public int getId() {
         return id;

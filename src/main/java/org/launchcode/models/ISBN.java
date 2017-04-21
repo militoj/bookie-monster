@@ -5,7 +5,7 @@ package org.launchcode.models;
  */
 public class ISBN extends BookField {
 
-    public ISBN(Float value) {
+    public ISBN(int value) {
         super(value);
     }
 }

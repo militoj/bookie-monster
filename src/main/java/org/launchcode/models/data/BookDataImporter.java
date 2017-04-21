@@ -46,13 +46,14 @@ public class BookDataImporter {
             for (CSVRecord record : records) {
 
                 String empStr = record.get("isbn");
+                int isbnInt = Integer.parseInt(empStr);
                 String locStr = record.get("quantity");
                 String coreCompStr = record.get("price");
                 String posTypeStr = record.get("date-created");
 
-                ISBN emp = bookData.getISBNs().findByValue(empStr);
+                ISBN emp = bookData.getISBNs().findByValue(isbnInt);
                 if (emp == null) {
-                    emp = new ISBN(empStr);
+                    emp = new ISBN(isbnInt);
                     bookData.getISBNs().add(emp);
                 }
 
