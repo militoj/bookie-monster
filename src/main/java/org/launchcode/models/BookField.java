@@ -8,6 +8,7 @@ import com.sun.xml.internal.bind.v2.TODO;
 public class BookField {
 
     private int value;
+    private String stringValue;
     private int id;
     private static int nextId = 1;
 
@@ -32,6 +33,15 @@ public class BookField {
     public void setValue(int aValue) {
         value = aValue;
     }
+
+    public String getStringValue() {
+        return stringValue;
+    }
+
+    public void setStringValue(String aValue) {
+        stringValue = aValue;
+    }
+
 
     public String toString() {
         return Integer.toString(value);

@@ -37,4 +37,31 @@ public class BookFieldData<T extends BookField> {
         return null;
     }
 
+    T findByValue(int value) {
+        for (T item : allFields) {
+            if (item.contains(value))
+                return item;
+        }
+
+        return null;
+    }
+
+    T findByValue(Float value) {
+        for (T item : allFields) {
+            if (item.contains(value))
+                return item;
+        }
+
+        return null;
+    }
+
+    T findByValue(Float value) {
+        for (T item : allFields) {
+            if (item.contains(value))
+                return item;
+        }
+
+        return null;
+    }
+
 }
