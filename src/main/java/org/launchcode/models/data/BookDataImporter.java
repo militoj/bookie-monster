@@ -63,17 +63,18 @@ public class BookDataImporter {
                     bookData.getLocations().add(loc);
                 }
 
-                Price posType = bookData.getPositionTypes().findByValue(posTypeStr);
-                if (posType == null) {
-                    posType = new Price(posTypeStr);
-                    bookData.getPositionTypes().add(posType);
-                }
-
-                DateCreated coreComp = bookData.getCoreCompetencies().findByValue(coreCompStr);
-                if (coreComp == null) {
-                    coreComp = new DateCreated(coreCompStr);
-                    bookData.getCoreCompetencies().add(coreComp);
-                }
+                //TODO going to stop messing with the rest of these until I get the first one working
+//                Price posType = bookData.getPositionTypes().findByValue(posTypeStr);
+//                if (posType == null) {
+//                    posType = new Price(posTypeStr);
+//                    bookData.getPositionTypes().add(posType);
+//                }
+//
+//                DateCreated coreComp = bookData.getCoreCompetencies().findByValue(coreCompStr);
+//                if (coreComp == null) {
+//                    coreComp = new DateCreated(coreCompStr);
+//                    bookData.getCoreCompetencies().add(coreComp);
+//                }
 
                 Book newBook = new Book(record.get("name"), emp, loc, posType, coreComp);
 
