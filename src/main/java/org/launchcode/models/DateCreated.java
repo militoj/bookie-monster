@@ -5,7 +5,7 @@ package org.launchcode.models;
  */
 public class DateCreated extends BookField {
 
-    public DateCreated(Float value) {
+    public DateCreated(int value) {
         super(value);
     }
 }

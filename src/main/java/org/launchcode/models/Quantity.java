@@ -5,7 +5,7 @@ package org.launchcode.models;
  */
 public class Quantity extends BookField {
 
-    public Quantity(String value) {
+    public Quantity(int value) {
         super(value);
     }
 

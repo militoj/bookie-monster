@@ -47,9 +47,16 @@ public class BookDataImporter {
 
                 String empStr = record.get("isbn");
                 int isbnInt = Integer.parseInt(empStr);
+
                 String locStr = record.get("quantity");
+                int quantityInt = Integer.parseInt(locStr);
+
                 String coreCompStr = record.get("price");
+                int priceInt = Integer.parseInt(coreCompStr);
+
                 String posTypeStr = record.get("date-created");
+                int priceInt = Integer.parseInt(coreCompStr);
+
 
                 ISBN emp = bookData.getISBNs().findByValue(isbnInt);
                 if (emp == null) {
@@ -57,9 +64,9 @@ public class BookDataImporter {
                     bookData.getISBNs().add(emp);
                 }
 
-                Quantity loc = bookData.getLocations().findByValue(locStr);
+                Quantity loc = bookData.getLocations().findByValue(quantityInt);
                 if (loc == null) {
-                    loc = new Quantity(locStr);
+                    loc = new Quantity(quantityInt);
                     bookData.getLocations().add(loc);
                 }
 
@@ -76,7 +83,10 @@ public class BookDataImporter {
 //                    bookData.getCoreCompetencies().add(coreComp);
 //                }
 
-                Book newBook = new Book(record.get("name"), emp, loc, posType, coreComp);
+                //TODO this is what is should be. Leaving out some of the arguments to simplify and get it working.
+//                Book newBook = new Book(record.get("name"), emp, loc, posType, coreComp);
+
+                Book newBook = new Book(record.get("name"), emp, loc);
 
                 bookData.add(newBook);
             }

@@ -5,7 +5,7 @@ package org.launchcode.models;
  */
 public class Price extends BookField {
 
-    public Price(Float value) {
+    public Price(int value) {
         super(value);
     }
 
