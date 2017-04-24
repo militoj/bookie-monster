@@ -11,25 +11,27 @@ import java.io.PrintWriter;
 //Borrowed from http://stackoverflow.com/questions/30073980/java-writing-strings-to-a-csv-file
 public class BookDataWriter {
 
-        public static void main(String[]args) throws FileNotFoundException{
-            PrintWriter pw = new PrintWriter(new File("test.csv"));
-            StringBuilder sb = new StringBuilder();
-            sb.append("id");
-            sb.append(',');
-            sb.append("Name");
-            sb.append('\n');
+    java.lang.System.out.println("hello");
 
-
-            sb.append("1");
-            sb.append(',');
-            sb.append("Prashant Ghimire");
-            sb.append('\n');
-
-
-            pw.write(sb.toString());
-            pw.close();
-            System.out.println("done!");
-
-        }
+//        public static void main(String[]args) throws FileNotFoundException{
+//            PrintWriter pw = new PrintWriter(new File("test.csv"));
+//            StringBuilder sb = new StringBuilder();
+//            sb.append("id");
+//            sb.append(',');
+//            sb.append("Name");
+//            sb.append('\n');
+//
+//
+//            sb.append("1");
+//            sb.append(',');
+//            sb.append("Prashant Ghimire");
+//            sb.append('\n');
+//
+//
+//            pw.write(sb.toString());
+//            pw.close();
+//            System.out.println("done!");
+//
+//        }
 
 }
