@@ -28,14 +28,14 @@ public class BookFieldData<T extends BookField> {
         allFields.add(item);
     }
 
-    T findByValue(String value) {
-        for (T item : allFields) {
-            if (item.contains(value))
-                return item;
-        }
-
-        return null;
-    }
+//    T findByValue(String stringValue) {
+//        for (T item : allFields) {
+//            if (item.contains(stringValue))
+//                return item;
+//        }
+//
+//        return null;
+//    }
 
     T findByValue(int value) {
         for (T item : allFields) {
@@ -46,22 +46,14 @@ public class BookFieldData<T extends BookField> {
         return null;
     }
 
-    T findByValue(Float value) {
-        for (T item : allFields) {
-            if (item.contains(value))
-                return item;
-        }
+//    T findByValue(Float value) {
+//        for (T item : allFields) {
+//            if (item.contains(value))
+//                return item;
+//        }
+//
+//        return null;
+//    }
 
-        return null;
-    }
-
-    T findByValue(Float value) {
-        for (T item : allFields) {
-            if (item.contains(value))
-                return item;
-        }
-
-        return null;
-    }
 
 }

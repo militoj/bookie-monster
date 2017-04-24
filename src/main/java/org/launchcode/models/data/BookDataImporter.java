@@ -55,7 +55,7 @@ public class BookDataImporter {
                 int priceInt = Integer.parseInt(coreCompStr);
 
                 String posTypeStr = record.get("date-created");
-                int priceInt = Integer.parseInt(coreCompStr);
+                int dateCreatedInt = Integer.parseInt(coreCompStr);
 
 
                 ISBN emp = bookData.getISBNs().findByValue(isbnInt);
@@ -70,23 +70,19 @@ public class BookDataImporter {
                     bookData.getLocations().add(loc);
                 }
 
-                //TODO going to stop messing with the rest of these until I get the first one working
-//                Price posType = bookData.getPositionTypes().findByValue(posTypeStr);
-//                if (posType == null) {
-//                    posType = new Price(posTypeStr);
-//                    bookData.getPositionTypes().add(posType);
-//                }
-//
-//                DateCreated coreComp = bookData.getCoreCompetencies().findByValue(coreCompStr);
-//                if (coreComp == null) {
-//                    coreComp = new DateCreated(coreCompStr);
-//                    bookData.getCoreCompetencies().add(coreComp);
-//                }
+                Price posType = bookData.getPositionTypes().findByValue(priceInt);
+                if (posType == null) {
+                    posType = new Price(priceInt);
+                    bookData.getPositionTypes().add(posType);
+                }
 
-                //TODO this is what is should be. Leaving out some of the arguments to simplify and get it working.
-//                Book newBook = new Book(record.get("name"), emp, loc, posType, coreComp);
+                DateCreated coreComp = bookData.getCoreCompetencies().findByValue(dateCreatedInt);
+                if (coreComp == null) {
+                    coreComp = new DateCreated(dateCreatedInt);
+                    bookData.getCoreCompetencies().add(coreComp);
+                }
 
-                Book newBook = new Book(record.get("name"), emp, loc);
+                Book newBook = new Book(record.get("name"), emp, loc, posType, coreComp);
 
                 bookData.add(newBook);
             }
