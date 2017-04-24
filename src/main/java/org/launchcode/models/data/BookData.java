@@ -18,7 +18,7 @@ public class BookData {
     private BookFieldData<Price> positionTypes = new BookFieldData<>();
 
 
-    private BookData() {
+    BookData() {
         BookDataImporter.loadData(this);
     }
 
