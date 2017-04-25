@@ -18,7 +18,7 @@ public class Scraper {
             userAgent.visit("http://www.cash4books.net/recent500.php");                    //visit a url
             Element table = userAgent.doc.findFirst("<table>");
 
-
+            //TODO figure out how tables and elements interact
             System.out.println(table.getRow(5).outerHTML());
 
 //            System.out.println(table.outerHTML() + "\n----\n");
