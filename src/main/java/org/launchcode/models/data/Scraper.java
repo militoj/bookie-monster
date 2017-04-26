@@ -16,13 +16,9 @@ public class Scraper {
         try {
             UserAgent userAgent = new UserAgent();                       //create new userAgent (headless browser).
             userAgent.visit("http://www.cash4books.net/recent500.php");                    //visit a url
-//            Table table = userAgent.doc.findFirst("<table>");
 
             Table table = userAgent.doc.getTable(0);
 
-
-            //TODO figure out how tables and elements interact
-            //System.out.println(table.getRow(5).outerHTML());
 
             List<Element> columns = table.getRow(5).toList();
 
@@ -31,15 +27,6 @@ public class Scraper {
                 System.out.println(column.innerHTML());
 
             }
-
-
-//            System.out.println(table.getRow(1).toList().toString() + "\n----\n");
-//            System.out.println(table.getRow(2).toList().toString() + "\n----\n");
-//            System.out.println(table.getRow(3).toList().toString() + "\n----\n");
-//            System.out.println(table.getRow(4).toList().toString() + "\n----\n");
-//
-
-
 
 
 
