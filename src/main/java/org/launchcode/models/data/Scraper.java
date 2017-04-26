@@ -36,13 +36,13 @@ public class Scraper {
                 String[] priceNoDollSign = price.split("\\$");
                 double priceDouble = Double.parseDouble(priceNoDollSign[1]);
 
-                Book newBook = new Book(isbnInt, priceDouble);
+                String buyer_name = "Cash4Books";
+                Book newBook = new Book(buyer_name, isbnInt, priceDouble);
                 scrapedBooks.add(newBook);
 
                 count++;
             }
-
-
+            
         } catch (JauntException e) {                                     //if an HTTP/connection error occurs, handle JauntException.
             System.err.println(e);
         }
