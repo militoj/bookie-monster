@@ -24,8 +24,9 @@ import java.util.List;
 public class BookDataWriter {
 
 
+
+
         public static void main(String[]args) throws FileNotFoundException{
-            BookData bookData = new BookData();
 
             PrintWriter pw = new PrintWriter(new File("/Users/johnmilito/git/bookie-monster/src/main/resources/test.csv"));
             StringBuilder sb = new StringBuilder();
