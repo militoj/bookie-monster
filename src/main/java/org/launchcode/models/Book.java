@@ -1,4 +1,6 @@
 package org.launchcode.models;
+package com.journaldev.java8.time;
+
 
 /**
  * Created by LaunchCode
@@ -8,59 +10,69 @@ public class Book {
     private int id;
     private static int nextId = 1;
 
-    private ISBN isbn;
-    private Quantity quantity;
-    private Price price;
-    private DateCreated dateCreated;
+    private int isbn;
+    private int quantity;
+    private double price;
+    private double amazon_price;
+
 
     public Book() {
         id = nextId;
         nextId++;
     }
 
-    public Book(String aName, ISBN aEmployer, Quantity aQuantity,
-                Price aPrice, DateCreated aSkill) {
+    public Book(int aIsbn, int aQuantity, double aPrice) {
 
         this();
 
-        isbn = aEmployer;
+        isbn = aIsbn;
         quantity = aQuantity;
         price = aPrice;
-        dateCreated = aSkill;
+
+    }
+
+    public Book(int aIsbn, int aQuantity, double aPrice, double aAmazon_price) {
+
+        this();
+
+        isbn = aIsbn;
+        quantity = aQuantity;
+        price = aPrice;
+        amazon_price = aAmazon_price;
 
     }
 
 
-    public ISBN getEmployer() {
+    public int getISBN() {
         return isbn;
     }
 
-    public void setISBN(ISBN isbn) {
+    public void setISBN(int isbn) {
         this.isbn = isbn;
     }
 
-    public Quantity getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Quantity quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    public Price getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(Price price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
-    public DateCreated getDateCreated() {
-        return dateCreated;
+    public double getDateCreated() {
+        return amazon_price;
     }
 
-    public void setDateCreated(DateCreated dateCreated) {
-        this.dateCreated = dateCreated;
+    public void setDateCreated(double dateCreated) {
+        this.amazon_price = dateCreated;
     }
 
     public int getId() {
