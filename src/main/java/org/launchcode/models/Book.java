@@ -9,6 +9,7 @@ public class Book {
     private int id;
     private static int nextId = 1;
 
+    private String buyer_name;
     private Long isbn;
     private int quantity;
     private double price;
@@ -20,36 +21,47 @@ public class Book {
         nextId++;
     }
 
-    public Book(Long aIsbn, double aPrice) {
+    public Book(String aBuyer, Long aIsbn, double aPrice) {
 
         this();
 
+        buyer_name = aBuyer;
         isbn = aIsbn;
         price = aPrice;
 
     }
 
-    public Book(Long aIsbn, int aQuantity, double aPrice) {
+    public Book(String aBuyer, Long aIsbn, int aQuantity, double aPrice) {
 
         this();
 
+        buyer_name = aBuyer;
         isbn = aIsbn;
         quantity = aQuantity;
         price = aPrice;
 
     }
 
-    public Book(Long aIsbn, int aQuantity, double aPrice, double aAmazon_price) {
+    public Book(String aBuyer, Long aIsbn, int aQuantity, double aPrice, double aAmazon_price) {
 
         this();
 
+        buyer_name = aBuyer;
         isbn = aIsbn;
         quantity = aQuantity;
         price = aPrice;
         amazon_price = aAmazon_price;
 
+
     }
 
+    public String getBuyer_name() {
+        return buyer_name;
+    }
+
+    public void setBuyer_name(String buyer_name) {
+        this.buyer_name = buyer_name;
+    }
 
     public Long getISBN() {
         return isbn;

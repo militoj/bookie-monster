@@ -21,7 +21,7 @@ public class Scraper {
 
             Table table = userAgent.doc.getTable(0);
 
-            
+
             ArrayList<Book> scrapedBooks = new ArrayList<Book>();
 
 
