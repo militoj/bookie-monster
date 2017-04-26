@@ -2,6 +2,8 @@ package org.launchcode.models.data;
 
 import com.jaunt.*;
 import com.jaunt.component.*;
+import org.launchcode.models.Book;
+
 import java.io.*;
 import java.util.*;
 
@@ -19,15 +21,26 @@ public class Scraper {
 
             Table table = userAgent.doc.getTable(0);
 
+            
+            ArrayList<Book> scrapedBooks = new ArrayList<Book>();
 
-            List<Element> columns = table.getRow(5).toList();
 
+            int count = 1;
+            while (count < 501 ) {
+                List<Element> columns = table.getRow(count).toList();
 
-            for (Element column : columns) {
-                System.out.println(column.innerHTML());
+                String isbn = columns.get(0).innerHTML();
+                Long isbnInt = Long.parseLong(isbn);
 
+                String price = columns.get(3).innerHTML();
+                String[] priceNoDollSign = price.split("\\$");
+                double priceDouble = Double.parseDouble(priceNoDollSign[1]);
+
+                Book newBook = new Book(isbnInt, priceDouble);
+                scrapedBooks.add(newBook);
+
+                count++;
             }
-
 
 
         } catch (JauntException e) {                                     //if an HTTP/connection error occurs, handle JauntException.

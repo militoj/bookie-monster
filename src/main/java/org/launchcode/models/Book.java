@@ -9,7 +9,7 @@ public class Book {
     private int id;
     private static int nextId = 1;
 
-    private int isbn;
+    private Long isbn;
     private int quantity;
     private double price;
     private double amazon_price;
@@ -20,7 +20,16 @@ public class Book {
         nextId++;
     }
 
-    public Book(int aIsbn, int aQuantity, double aPrice) {
+    public Book(Long aIsbn, double aPrice) {
+
+        this();
+
+        isbn = aIsbn;
+        price = aPrice;
+
+    }
+
+    public Book(Long aIsbn, int aQuantity, double aPrice) {
 
         this();
 
@@ -30,7 +39,7 @@ public class Book {
 
     }
 
-    public Book(int aIsbn, int aQuantity, double aPrice, double aAmazon_price) {
+    public Book(Long aIsbn, int aQuantity, double aPrice, double aAmazon_price) {
 
         this();
 
@@ -42,11 +51,11 @@ public class Book {
     }
 
 
-    public int getISBN() {
+    public Long getISBN() {
         return isbn;
     }
 
-    public void setISBN(int isbn) {
+    public void setISBN(Long isbn) {
         this.isbn = isbn;
     }
 
