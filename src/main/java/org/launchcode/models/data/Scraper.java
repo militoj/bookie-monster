@@ -42,9 +42,16 @@ public class Scraper {
 
                 count++;
             }
-            
+
+            String fileName = "book_data.csv";
+
+            CsvFileReader.readCsvFile(fileName);
+
+
         } catch (JauntException e) {                                     //if an HTTP/connection error occurs, handle JauntException.
             System.err.println(e);
         }
     }
+
+
 }
