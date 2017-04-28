@@ -19,6 +19,7 @@ sourceCompatibility = 1.8
 
 repositories {
 	mavenCentral()
+	// maven { url "https://clojars.org/repo" }
 }
 
 
@@ -26,6 +27,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	runtime('org.springframework.boot:spring-boot-devtools')
+	// runtime('com.jaunt:jaunt')
 	compile('org.apache.commons:commons-csv:1.4')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }

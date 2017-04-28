@@ -1,6 +1,6 @@
 package org.launchcode.models.data;
 
-import com.jaunt.*;
+import com.jaunt;
 import com.jaunt.component.*;
 import org.launchcode.models.Book;
 
